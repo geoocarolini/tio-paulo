@@ -1,0 +1,24 @@
+package meuPacote;
+
+import robocode.*;
+
+public class MeuRobo extends Robot {
+
+    public void run() {
+        // Definindo a cor do robô como rosa
+        setColors(Color.pink, Color.pink, Color.pink);
+
+        // Loop principal do robô
+        while (true) {
+            ahead(100); // Move para frente
+            turnGunRight(360); // Gira o canhão
+        }
+    }
+
+    public void onScannedRobot(ScannedRobotEvent e) {
+        // Quando um inimigo é detectado, atira 5 vezes
+        for (int i = 0; i < 5; i++) {
+            fire(3); // Define a potência do tiro
+        }
+    }
+}

@@ -1,0 +1,39 @@
+import robocode.*;
+
+// This class is named PinkFiveShooter by convention
+// You can change it to any name you like
+public class PinkFiveShooter extends Robot {
+
+    // We need a counter to keep track of the number of shots fired
+    int shotCount = 0;
+
+    public PinkFiveShooter() {
+        // Set the body color to pink
+        setBodyColor(new Color(255, 192, 203));
+        // Set the gun color to pink as well
+        setGunColor(new Color(255, 192, 203));
+    }
+
+    public void run() {
+        // Turn the radar continuously to scan for enemies
+        while (true) {
+            turnRadarRight(360);
+        }
+    }
+
+    public void onScannedRobot(ScannedRobotEvent e) {
+        // Check if we have already fired 5 times
+        if (shotCount < 5) {
+            // Fire the gun at the enemy
+            fire(1);
+            shotCount++;
+        }
+        // This resets the shotCount back to 0 
+        // after 5 shots so it can fire again
+        // You can remove this line if you want it to fire continuously
+        // at the enemy while it's in range
+        if (shotCount == 5) {
+            shotCount = 0;
+        }
+    }
+}
